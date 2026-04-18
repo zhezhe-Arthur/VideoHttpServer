@@ -48,13 +48,13 @@
 
 ```text
 VideoHttpServer
-├─ static
-│  ├─ index.html
-│  ├─ app.js
-│  ├─ player.html
-│  └─ player.js
 ├─ src
-│  └─ VideoFolderServer.java
+│  ├─ VideoFolderServer.java
+│  └─ static
+│     ├─ index.html
+│     ├─ app.js
+│     ├─ player.html
+│     └─ player.js
 ├─ config.properties.example
-├─ README.md
-└─ .gitignore 
+├─ .gitignore
+└─ README.md
