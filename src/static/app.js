@@ -16,7 +16,7 @@ async function loadVideos() {
             const li = document.createElement("li");
             const a = document.createElement("a");
 
-            a.href = "/video-page?name=" + encodeURIComponent(fileName);
+            a.href = "/player.html?name=" + encodeURIComponent(fileName);
             a.textContent = fileName;
 
             li.appendChild(a);

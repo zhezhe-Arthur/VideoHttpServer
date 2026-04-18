@@ -1,4 +1,5 @@
 # Video Folder Server
+在家庭wifi和局域网络中快速分享视频
 
 一个基于 Java 内置 `HttpServer` 实现的局域网视频文件夹服务。
 
@@ -42,6 +43,31 @@
 - IntelliJ IDEA（开发时可选）
 
 ---
+
+## 配置文件
+
+- 项目使用 config.properties 作为运行配置文件。
+- 仓库中提供示例文件：config.properties.example
+- 你可以复制一份并改为：config.properties
+- 配置中有：video.dir=D:/MovieServer
+- 需要改成真实存在的目录，并可以存放需要分享的视频
+
+## 启动方式
+
+- 在IDEA中直接运行VideoFolderServer.java
+- 启动后控制台会输出：
+```text
+Trying preferred port: 7777
+Server started
+Computer access: http://localhost:7777/
+Phone/iPad access: http://192.168.xxx.xx:7777/
+```
+- 如果首选端口被占用，程序会输出新的实际端口。
+
+## 访问方式
+- 手机和电脑必须在同一个局域网 / Wi-Fi 下
+- 在浏览器输入Phone/iPad access地址访问
+- localhost 在手机上指向的是手机自己，不是电脑
 
 ## 项目结构
 

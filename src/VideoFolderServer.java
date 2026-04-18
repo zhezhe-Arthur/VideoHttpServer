@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.Executors;
 
 public class VideoFolderServer {
     private static Path VIDEO_DIR;
@@ -98,6 +99,47 @@ public class VideoFolderServer {
             }
         });
 
+        server.createContext("/player.html", exchange -> {
+            Path htmlPath = Path.of("src/static/player.html");
+
+            if (!Files.exists(htmlPath)) {
+                byte[] bytes = "player.html not found".getBytes(StandardCharsets.UTF_8);
+                exchange.sendResponseHeaders(404, bytes.length);
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(bytes);
+                }
+                return;
+            }
+
+            byte[] bytes = Files.readAllBytes(htmlPath);
+            exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
+            exchange.sendResponseHeaders(200, bytes.length);
+
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(bytes);
+            }
+        });
+
+        server.createContext("/player.js", exchange -> {
+            Path jsPath = Path.of("src/static/player.js");
+
+            if (!Files.exists(jsPath)) {
+                byte[] bytes = "player.js not found".getBytes(StandardCharsets.UTF_8);
+                exchange.sendResponseHeaders(404, bytes.length);
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(bytes);
+                }
+                return;
+            }
+
+            byte[] bytes = Files.readAllBytes(jsPath);
+            exchange.getResponseHeaders().set("Content-Type", "application/javascript; charset=UTF-8");
+            exchange.sendResponseHeaders(200, bytes.length);
+
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(bytes);
+            }
+        });
 
         server.createContext("/video", exchange -> {
             String fileName = getQueryParam(exchange.getRequestURI().getRawQuery(), "name");
@@ -197,6 +239,8 @@ public class VideoFolderServer {
                 }
             }
         });
+
+        server.setExecutor(Executors.newFixedThreadPool(8));
 
         server.start();
 
@@ -316,4 +360,6 @@ public class VideoFolderServer {
 
         Files.writeString(configPath, defaultConfig, StandardCharsets.UTF_8);
     }
+
+
 }
