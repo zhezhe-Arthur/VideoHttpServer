@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 20px 40px;
+        }
+
+        .top-bar {
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #222;
+            background: #fff;
+            border: 1px solid #d8dee9;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .back-link:hover {
+            background: #eef4ff;
+        }
+
+        .title {
+            margin: 18px 0 16px;
+            font-size: 24px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .player-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        video {
+            display: block;
+            width: 100%;
+            max-height: 75vh;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .message {
+            color: #666;
+            padding: 16px 0;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 16px 12px 28px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .player-card {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-bar">
+        <button class="back-link" onclick="window.location.href='/'">Back</button>
+    </div>
+
+    <h1 id="title" class="title">Loading...</h1>
+
+    <div class="player-card">
+        <video id="video" controls></video>
+        <div id="message" class="message"></div>
+    </div>
+</div>
+
+<script src="/player.js"></script>
+</body>
+</html>

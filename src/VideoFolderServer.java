@@ -41,7 +41,7 @@ public class VideoFolderServer {
         HttpServer server = createServerWithFallbackPort(DEFAULT_PORT);
 
         server.createContext("/", exchange -> {
-            Path htmlPath = Path.of("src/static/index.html");
+            Path htmlPath = Path.of("static/index.html");
 
             if (!Files.exists(htmlPath)) {
                 byte[] bytes = "index.html not found".getBytes(StandardCharsets.UTF_8);
@@ -62,7 +62,7 @@ public class VideoFolderServer {
         });
 
         server.createContext("/app.js", exchange -> {
-            Path jsPath = Path.of("src/static/app.js");
+            Path jsPath = Path.of("static/app.js");
 
             if (!Files.exists(jsPath)) {
                 byte[] bytes = "app.js not found".getBytes(StandardCharsets.UTF_8);
@@ -100,7 +100,7 @@ public class VideoFolderServer {
         });
 
         server.createContext("/player.html", exchange -> {
-            Path htmlPath = Path.of("src/static/player.html");
+            Path htmlPath = Path.of("static/player.html");
 
             if (!Files.exists(htmlPath)) {
                 byte[] bytes = "player.html not found".getBytes(StandardCharsets.UTF_8);
@@ -121,7 +121,7 @@ public class VideoFolderServer {
         });
 
         server.createContext("/player.js", exchange -> {
-            Path jsPath = Path.of("src/static/player.js");
+            Path jsPath = Path.of("static/player.js");
 
             if (!Files.exists(jsPath)) {
                 byte[] bytes = "player.js not found".getBytes(StandardCharsets.UTF_8);
